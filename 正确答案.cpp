@@ -45,6 +45,8 @@ int main()
 			i=k;
 		}
 	}
+	
+	cout<<sum;
 
 	return 0;	
 } 
