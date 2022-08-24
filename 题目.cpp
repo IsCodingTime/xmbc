@@ -2,76 +2,35 @@
 
 using namespace std;
 
-int num_int(string num_s)
-{
-	int num_i[num_s.size()]={0};
-	
-	for(int i=0;i<num_s.size();i++)
-	{
-		if(num_s[i]>='0'&&num_s[i]<='9')
-		{
-			num_i[i]=num_s[i]-48;
-		}
-	}
-	
-	int num=num_i[0];
-	
-	for(int i=0;i<num_s.size();i++)
-	{
-		num+=num_i[i]*(i*10);
-	}
-	
-	return num;
-}
-
 int main()
 {
-	string in;
+	int M,T,U,F,D;
 	
-	cin>>in;
+	cin>>M>>T>>U>>F>>D;
 	
-	int op=0,num_i1=0,num_i2;
-	string num_s;
+	char rode;
+	int time=0,sum=0;
 	
-	for(int i=0;i<=in.size();i++)
+	for(int i=1;i<=T;i++)
 	{
-		if(in[i]=='+'||in[i]=='-'||in[i]=='=')
+		cin>>rode;
+		
+		if(time<M)
 		{
-			for(int j=op;j<i-1;j++)
-			{
-				num_s[j]=in[j];
+			if(rode=='u'&&time+U+D<=M||rode=='d'&&time+D+U<=M)
+			{ 
+				time+=U+D;
+				sum++;
 			}
-			
-			if(in[i]=='+'||in[i]=='-')
+			else if(rode=='f'&&time+F*2<=M)
 			{
-				op=i;				
-			}
-
-			num_i2=num_int(num_s);
-			
-			if(in[i]=='+')
-			{
-				num_i1+=num_i2;
-			}
-			else if(in[i]=='-')
-			{
-				num_i1-=num_i2;
-			}
-			else if(in[i]=='=')
-			{
-				if(in[op]=='+')
-				{
-					num_i1+=num_i2;
-				}
-				else if(in[op]=='-')
-				{
-					num_i1-=num_i2;
-				}
+				time+=F*2;
+				sum++;
 			}
 		}
 	}
 	
-	cout<<num_i1;
+	cout<<sum;
 
 	return 0;	
 } 
