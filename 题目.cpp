@@ -1,36 +1,26 @@
-#include <iostream>
-
+#include<bits/stdc++.h>
 using namespace std;
-
 int main()
-{
-	int M,T,U,F,D;
-	
-	cin>>M>>T>>U>>F>>D;
-	
-	char rode;
-	int time=0,sum=0;
-	
-	for(int i=1;i<=T;i++)
-	{
-		cin>>rode;
-		
-		if(time<M)
-		{
-			if(rode=='u'&&time+U+D<=M||rode=='d'&&time+D+U<=M)
-			{ 
-				time+=U+D;
-				sum++;
-			}
-			else if(rode=='f'&&time+F*2<=M)
-			{
-				time+=F*2;
-				sum++;
-			}
+{	
+	string s,sn,st;
+	cin>>s;
+	int k,m=-1,t,n;
+	stringstream ss;
+	for(int i=0;i<s.size();i++){
+		k=i;t=0;
+while(s[k]>='0'&&s[k]<='9'){
+			k++;t++;
 		}
+		if(t>0){
+			sn=s.substr(i,t);
+			i=k;
+			ss.clear();
+ss<<sn;ss>>n;
+			if(n>m)m=n;
+		}	
 	}
+	ss.clear();	ss<<m;ss>>st;
+	cout<<s.find(st)+1;
 	
-	cout<<sum;
-
-	return 0;	
-} 
+	return 0;
+}
